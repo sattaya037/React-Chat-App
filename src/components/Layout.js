@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client'
-import { USER_CONNECTED, LOGOUT,VERIFY_USER } from '../Event'
+import { USER_CONNECTED, LOGOUT } from '../Event'
 import LoginForm from './LoginForm'
 import ChatContainer from './chats/ChatContainer'
 
