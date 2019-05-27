@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client'
-import { USER_CONNECTED, LOGOUT } from '../Event'
+import { USER_CONNECTED, LOGOUT,VERIFY_USER } from '../Event'
 import LoginForm from './LoginForm'
 import ChatContainer from './chats/ChatContainer'
 
-const socketUrl = "http://localhost:3231"
+const socketUrl = "192.168.43.49:3231"
 export default class Layout extends Component {
 	
 	constructor(props) {
@@ -24,10 +24,24 @@ export default class Layout extends Component {
 		const socket = io(socketUrl)
 
 		socket.on('connect', ()=>{
-			console.log("Connected");
+			if(this.state.user){
+				this.reconnect(socket)
+			}else{
+				console.log("Connected");
+			}
 		})
 		
 		this.setState({socket})
+	}
+
+	reconnect = (socket)=>{
+		socket.emit(VERIFY_USER, this.state.user.name,({isUser,user})=>{
+			if(isUser){
+				this.setState({user:null})
+			}else{
+				this.setState(user)
+			}
+		})
 	}
 
 	setUser = (user)=>{
