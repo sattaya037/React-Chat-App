@@ -8,7 +8,7 @@
     "express": "^4.17.1",
     "express-session": "^1.16.1",
     "express-socket.io-session": "^1.3.5",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "onsenui": "^2.10.8",
     "react": "^16.8.6",
     "react-center": "^1.1.1",
